@@ -21,6 +21,12 @@ jobs:
       - name: Go unit tests
         run: go test -cover ./...
 
+      - name: Install gosec for Go 1.21.1+
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+
+      - name: Gosec check for security issues
+        run: gosec ./...
+
   style:
     name: Style
     runs-on: ubuntu-latest
